@@ -1,0 +1,13 @@
+URI Design
+
+Resource: /customers
+GET (read): Get List - Returns List
+POST (create): Create Item - Returns New Item
+PUT (update): Update Batch / commonly this isn't supported - Returns Status Code Only
+DELETE (delete): Error (should never support) - Returns Status Code Only * Error Status Code
+
+Resource: /customers/123
+GET (read): Get Item - Returns Item
+POST (create): Error (already exists) - Returns Status Code Only * Error Status Code
+PUT (update): Update Item - Returns Updated Item
+DELETE (delete): Delete Item - Returns Status Code Only
