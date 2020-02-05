@@ -11,3 +11,12 @@ GET (read): Get Item - Returns Item
 POST (create): Error (already exists) - Returns Status Code Only * Error Status Code
 PUT (update): Update Item - Returns Updated Item
 DELETE (delete): Delete Item - Returns Status Code Only
+
+CampsController
+/api/camps
+/api/camps/atl2016
+
+split out controllers based on resources even if associated
+TalksController (associations)
+/api/camps/atl2016/talks
+/api/camps/atl2016/talks/1

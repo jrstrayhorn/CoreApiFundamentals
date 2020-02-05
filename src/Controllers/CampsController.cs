@@ -157,7 +157,6 @@ namespace CoreCodeCamp.Controllers
             catch (Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
-                throw;
             }
 
             return BadRequest("Failed to delete the camp");
