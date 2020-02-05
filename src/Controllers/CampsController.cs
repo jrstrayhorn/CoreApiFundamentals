@@ -84,6 +84,13 @@ namespace CoreCodeCamp.Controllers
         {
             try 
 	        {
+                var existing = await _repository.GetCampAsync(model.Moniker);
+                if (existing != null)
+                {
+                    return BadRequest("Moniker in Use");
+                }
+                // if no APIController attribute you can use, but don't need to, will auto generate error messages and 400 Bad request
+                //if (ModelState.IsValid)
                 var location = _linkGenerator.GetPathByAction("Get", "Camps", new { moniker = model.Moniker });
 
                 if (string.IsNullOrWhiteSpace(location))
