@@ -80,6 +80,7 @@ namespace CoreCodeCamp.Controllers
 	        }
         }
 
+        // don't need [FromBody] because of the APIController attribute, will automatically do model binding from body
         public async Task<ActionResult<CampModel>> Post(CampModel model)
         {
             try 
@@ -110,6 +111,30 @@ namespace CoreCodeCamp.Controllers
 	        {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure - " + ex.Message);
 	        }
+
+            return BadRequest();
+        }
+
+        [HttpPut("{moniker}")]
+        public async Task<ActionResult<CampModel>> Put(string moniker, CampModel model)
+        {
+            try
+            {
+                var oldCamp = await _repository.GetCampAsync(moniker);
+                if (oldCamp == null) return NotFound($"Could not find camp with moniker of {moniker}");
+
+                // merges incoming model object with existing oldCamp object
+                _mapper.Map(model, oldCamp);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return _mapper.Map<CampModel>(oldCamp);
+                }
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
 
             return BadRequest();
         }
