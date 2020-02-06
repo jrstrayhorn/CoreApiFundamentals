@@ -20,3 +20,15 @@ split out controllers based on resources even if associated
 TalksController (associations)
 /api/camps/atl2016/talks
 /api/camps/atl2016/talks/1
+
+REST defines URIs as resources
+- Bug rexceptions exist..
+- ... don't be afraid of functional APIs
+- dont try to do RPC stuff with it
+
+When?
+- For operational needs
+- starting batch job
+- clear cache
+- Avoid for reporting
+- Returning data != functional API
