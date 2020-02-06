@@ -32,3 +32,52 @@ When?
 - clear cache
 - Avoid for reporting
 - Returning data != functional API
+
+Once you publish an API, it's set in stone
+  - Users/Customers rely on the API
+  - But requirements will change
+  - Need a way to evolve the API
+        - Don't break clients
+  - API version isn't product version
+        - so they don't need to be tied together
+
+Problem
+- IN .NET
+  - is done with 'package' version (assemblies)
+
+API version is harder
+- nees to support new and old users
+- side-by-side deployment isnt' feasible
+- code base to support both versions
+
+API Versionsing schemes
+- Not all of them are recommended
+- Find a mechanism that works for you (need alignment with whole team)
+- But remember:
+  - serving the client not ourselves
+
+Versioning in the URI
+// URI Path
+https://foo.org/api/v2/Customers
+
+// Query string
+https://foo.org/api/Customers?v=2.0
+
+Versioning with Headers
+GET /api/camps HTTP/1.1
+Host: localhost:44388
+Content-Type: application/json
+X-Version: 2.0 <<<< HERE
+
+Versioning with Accept Header
+GET /api/camps HTTP/1.1
+Host: localhost:44388
+Content-Type: application/json
+Accept: application/json;version=2.0
+
+Versioning with Content Type
+GET /api/camps HTTP/1.1
+Host: localhost:44388
+Content-Type: application/vnd.yourapp.camp.v1+json
+Accept: application/vnd.yourapp.camp.v1+json
+
